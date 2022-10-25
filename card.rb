@@ -1,8 +1,10 @@
 class Card
-  attr_reader :name, :rate
+  attr_reader :name, :suit
+  attr_accessor :points
 
-  def initialize(name, rate)
+  def initialize(name, suit, points)
     @name = name
-    @rate = rate
+    @suit = suit
+    @points = points
   end
 end
