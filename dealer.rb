@@ -1,4 +1,4 @@
-class Diller
+class Dealer
   attr_reader :name, :bank, :current_cards, :score, :rate
 
   def initialize(name: 'Diller')
