@@ -1,11 +1,11 @@
-require_relative 'deck'
 class Game
-  include Deck
-
+  attr_reader :player, :dealer
   attr_accessor :deck
 
-  def initialize
-    @deck = generate_deck
+  def initialize(player, dealer, deck)
+    @deck = deck
+    @player = player
+    @dealer = dealer
     @issued_cards = []
   end
 
@@ -13,7 +13,10 @@ class Game
 
   def show_cards; end
 
-  def give_cards(number_of_cards = 1)
+  def give_cards(number_of_cards: 1)
     deck.shift(number_of_cards)
   end
+
+  # сделать ставку
+  def bet; end
 end
