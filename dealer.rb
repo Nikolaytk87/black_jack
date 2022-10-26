@@ -1,9 +1,11 @@
-class Dealer
-  def initialize(name: 'BJDealer')
+require_relative 'user'
+class Dealer < User
+  def initialize(name: 'BJDealer', bank: 100)
     super(name)
-    @bank = 100
+    @bank = bank
     @score = 0
     @rate = 10
-    @current_cards ||= []
+    @cards ||= []
+    super(name)
   end
 end

@@ -1,9 +1,10 @@
-class Player
-  def initialize(name)
-    super(name)
-    @bank = 100
+require_relative 'user'
+class Player < User
+  def initialize(name: 'Bot', bank: 100)
+    @bank = bank
     @score = 0
     @rate = 10
-    @current_cards ||= []
+    @cards ||= []
+    super(name)
   end
 end
