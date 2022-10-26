@@ -1,5 +1,5 @@
 class User
-  attr_reader :name, :bank, :current_cards, :score, :rate
+  attr_reader :name, :bank, :cards, :score, :rate
 
   def initialize(name)
     @name = name
@@ -7,5 +7,5 @@ class User
 
   protected
 
-  attr_writer :bank, :score
+  attr_writer :bank, :score, :cards
 end
