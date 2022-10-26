@@ -3,10 +3,6 @@ class Player
 
   def initialize(name)
     @name = name
-    @bank = 100
-    @score = 0
-    @rate = 10
-    @current_cards ||= []
   end
 
   protected

@@ -1,5 +1,5 @@
-class Dealer
-  def initialize(name: 'BJDealer')
+class User
+  def initialize(name)
     super(name)
     @bank = 100
     @score = 0
