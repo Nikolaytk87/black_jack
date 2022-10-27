@@ -2,17 +2,11 @@ require_relative 'player'
 require_relative 'dealer'
 require_relative 'game'
 require_relative 'deck'
+require_relative 'inputs'
 class Interface
   include Deck
-  attr_accessor :menu
+  include Inputs
   attr_reader :player, :dealer, :game
-
-  def initialize; end
-
-  def input_name
-    puts 'Input your name: '
-    gets.chomp
-  end
 
   def init_users(player_name, dealer_name)
     @player = Player.new(name: player_name)
@@ -20,13 +14,40 @@ class Interface
   end
 
   def main_menu
-    player_name = input_name
-    init_users(player_name, 'BJDealer')
-    deck = generate_deck
-    @game = Game.new(player, dealer, deck)
-    player.cards.push(*game.give_cards(number_of_cards: 2))
-    dealer.cards.push(*game.give_cards(number_of_cards: 2))
+    init_users(input_player_name, 'BJDealer')
+    menu
   end
 
-  def show_menu; end
+  def menu
+    check_balance
+    deck = generate_deck
+    @game = Game.new(player, dealer, deck)
+    round
+    try_again
+  end
+
+  def try_again
+    choice = input_continue
+    case choice
+    when '1' then menu
+    when '0' then puts 'Game Over'
+    end
+  end
+
+  def check_balance
+    return unless player.bank.zero? || dealer.bank.zero?
+
+    puts 'The game is over due to a zero balance of one of the players'
+    exit
+  end
+
+  def round
+    game.reset_cards
+    game.handout
+    game.show_cards(player)
+    game.show_points(player)
+    game.bet(rate: 10)
+    game.player_move(input_player_choice)
+    game.show_balance
+  end
 end
