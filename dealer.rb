@@ -6,6 +6,7 @@ class Dealer < User
     super(name)
     @bank = bank
     @cards ||= []
+    @rate = 10
     @limit = 17
     super(name)
   end

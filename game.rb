@@ -38,10 +38,10 @@ class Game
     dealer.reset_cards
   end
 
-  def bet(rate: 10)
-    player.bank -= rate
-    dealer.bank -= rate
-    self.bank += rate * 2
+  def bet
+    player.bank -= player.rate
+    dealer.bank -= dealer.rate
+    self.bank += player.rate + dealer.rate
   end
 
   def player_move(choice)

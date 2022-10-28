@@ -46,7 +46,7 @@ class Interface
     game.handout
     game.show_cards(player)
     game.show_points(player)
-    game.bet(rate: 10)
+    game.bet
     game.player_move(input_player_choice)
     game.show_balance
   end
