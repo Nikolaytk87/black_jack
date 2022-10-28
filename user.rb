@@ -6,13 +6,16 @@ class User
     @name = name
   end
 
-  def points
-    cards.map(&:points).sum
+  def ace_eleven
+    cards.find do  |card|
+      card.name == 'A' && card.points == 11
+    end
   end
 
-  # def ace?
-  #   cards.each { |card| card.name }
-  # end
+  def score
+    ace_eleven.points = 1 while ace_eleven && points > 21
+    self.score = points
+  end
 
   def card_names
     cards.map(&:name)
@@ -28,5 +31,11 @@ class User
 
   protected
 
-  attr_writer :cards
+  attr_writer :cards, :score
+
+  private
+
+  def points
+    cards.map(&:points).sum
+  end
 end
