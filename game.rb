@@ -55,7 +55,7 @@ class Game
   def player_add_cards
     if player.cards.size == 2
       card = player.cards.concat(give_cards).last
-      puts "Add card #{card.name} #{card.suit} ALL_Points: #{player.points}"
+      puts "Add card #{card.name} #{card.suit}. All Points: #{player.points}"
       maximum_cards? ? open_cards : dealer_move
     else
       puts 'Too much cards'
@@ -64,9 +64,12 @@ class Game
   end
 
   def dealer_move
-    puts "Now the Dealer's move"
-    dealer.cards.concat(give_cards) if dealer.points < dealer.limit
-    puts 'Dealer made a move'
+    if dealer.points < dealer.limit
+      dealer.cards.concat(give_cards)
+      puts "#{dealer.name} took another card"
+    else
+      puts "#{dealer.name} skip move"
+    end
     maximum_cards? ? open_cards : player_move(input_player_choice)
   end
 
@@ -75,6 +78,7 @@ class Game
   end
 
   def open_cards
+    puts 'Opening the cards'
     show_cards(player)
     show_points(player)
     show_cards(dealer)
