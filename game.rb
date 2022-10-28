@@ -11,12 +11,11 @@ class Game
     @bank = 0
   end
 
-  def show_cards(user)
-    puts "#{user.name} cards:\n#{user.card_names}"
-  end
-
-  def show_points(user)
-    puts "#{user.name} points: #{user.points}"
+  def show_info(user)
+    cards = [user.card_names, user.card_suits].transpose
+    print "#{user.name} cards: "
+    cards.each { |card| print "'#{card.join(' ')}'", ' ' }
+    puts "\nALL Points: #{user.points}"
   end
 
   def show_balance
@@ -79,10 +78,8 @@ class Game
 
   def open_cards
     puts 'Opening the cards'
-    show_cards(player)
-    show_points(player)
-    show_cards(dealer)
-    show_points(dealer)
+    show_info(player)
+    show_info(dealer)
     calculating
   end
 

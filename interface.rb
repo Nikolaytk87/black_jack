@@ -44,8 +44,7 @@ class Interface
   def round
     game.reset_cards
     game.handout
-    game.show_cards(player)
-    game.show_points(player)
+    game.show_info(player)
     game.bet
     game.player_move(input_player_choice)
     game.show_balance

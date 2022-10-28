@@ -10,8 +10,16 @@ class User
     cards.map(&:points).sum
   end
 
+  # def ace?
+  #   cards.each { |card| card.name }
+  # end
+
   def card_names
-    cards.map { |card| "'#{card.name} #{card.suit}'" }.join(', ')
+    cards.map(&:name)
+  end
+
+  def card_suits
+    cards.map(&:suit)
   end
 
   def reset_cards
