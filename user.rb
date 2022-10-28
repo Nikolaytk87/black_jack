@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User
   attr_reader :name, :cards
   attr_accessor :bank, :rate

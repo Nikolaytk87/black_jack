@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Inputs
   def input_player_name
     puts 'Input your name: '

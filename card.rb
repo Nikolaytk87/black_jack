@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Card
   attr_reader :name, :suit
   attr_accessor :points
