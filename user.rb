@@ -13,8 +13,8 @@ class User
   end
 
   def score
-    ace_eleven.points = 1 while ace_eleven && points > 21
-    self.score = points
+    ace_eleven.points = 1 while ace_eleven && sum_points > 21
+    self.score = sum_points
   end
 
   def card_names
@@ -35,7 +35,7 @@ class User
 
   private
 
-  def points
+  def sum_points
     cards.map(&:points).sum
   end
 end

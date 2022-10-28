@@ -15,7 +15,7 @@ class Game
     cards = [user.card_names, user.card_suits].transpose
     print "#{user.name} cards: "
     cards.each { |card| print "'#{card.join(' ')}'", ' ' }
-    puts "\nALL Points: #{user.points}"
+    puts "\nALL Points: #{user.score}"
   end
 
   def show_balance
@@ -54,7 +54,7 @@ class Game
   def player_add_cards
     if player.cards.size == 2
       card = player.cards.concat(give_cards).last
-      puts "Add card #{card.name} #{card.suit}. All Points: #{player.points}"
+      puts "Add card #{card.name} #{card.suit}. All Points: #{player.score}"
       maximum_cards? ? open_cards : dealer_move
     else
       puts 'Too much cards'
@@ -63,7 +63,7 @@ class Game
   end
 
   def dealer_move
-    if dealer.points < dealer.limit
+    if dealer.score < dealer.limit
       dealer.cards.concat(give_cards)
       puts "#{dealer.name} took another card"
     else
@@ -84,15 +84,15 @@ class Game
   end
 
   def calculating
-    diff_player = 21 - player.points
-    diff_dealer = 21 - dealer.points
+    diff_player = 21 - player.score
+    diff_dealer = 21 - dealer.score
     if diff_player.negative? || (diff_player > diff_dealer && !diff_dealer.negative?)
       dealer.bank += bank
       puts "Alas,#{player.name} you lost"
     elsif diff_player < diff_dealer || diff_dealer.negative?
       player.bank += bank
       puts "Congratulations, #{player.name} you won"
-    elsif player.points == dealer.points
+    elsif player.score == dealer.score
       puts 'Tie. Number of points equal'
       self.bank /= 2
       player.bank += bank
