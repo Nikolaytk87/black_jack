@@ -28,13 +28,13 @@ class Game
     puts "#{player.name}: Your balance $#{player.bank}"
   end
 
-  def give_cards(number_of_cards: 1)
+  def give_card(number_of_cards: 1)
     deck.shift(number_of_cards)
   end
 
   def handout
-    player.cards.concat(give_cards(number_of_cards: 2))
-    dealer.cards.concat(give_cards(number_of_cards: 2))
+    player.cards.concat(give_card(number_of_cards: 2))
+    dealer.cards.concat(give_card(number_of_cards: 2))
   end
 
   def reset_cards
@@ -60,7 +60,7 @@ class Game
     if player.max_cards?
       puts 'Too much cards'
     else
-      card = player.cards.concat(give_cards).last
+      card = player.cards.concat(give_card).last
       player.show_added_card(card)
       player.show_score
     end
@@ -77,7 +77,7 @@ class Game
   end
 
   def dealer_add_card
-    dealer.cards.concat(give_cards)
+    dealer.cards.concat(give_card)
     puts "#{dealer.name} took another card"
   end
 
