@@ -4,6 +4,7 @@ class User
   MAX_POINTS = 21
   MAX_ACE_VALUE = 11
   MIN_ACE_VALUE = 1
+  MAX_CARDS = 3
   attr_reader :name, :cards
   attr_accessor :bank, :rate
 
@@ -22,12 +23,24 @@ class User
     sum_points
   end
 
+  def diff
+    MAX_POINTS - score
+  end
+
   def card_names
     cards.map(&:name)
   end
 
+  def max_cards?
+    cards.size >= MAX_CARDS
+  end
+
   def card_suits
     cards.map(&:suit)
+  end
+
+  def show_added_card(card)
+    puts "Add card #{card.name} #{card.suit}"
   end
 
   def reset_cards
