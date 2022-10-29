@@ -5,6 +5,7 @@ require_relative 'dealer'
 require_relative 'game'
 require_relative 'deck'
 require_relative 'inputs'
+# The main interface that controls the flow of the game
 class Interface
   include Deck
   include Inputs

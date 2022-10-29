@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Parent for  Player and Dealer objects
 class User
   MAX_POINTS = 21
   MAX_ACE_VALUE = 11

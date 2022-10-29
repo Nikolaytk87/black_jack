@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Module for calculating and displaying game results
 module Calculating
   def calculating
     if player_lost?

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'user'
+# Object Dealer
 class Dealer < User
   LIMIT = 17
   def initialize(name: 'BJDealer', bank: 100)

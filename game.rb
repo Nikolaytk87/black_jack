@@ -2,6 +2,7 @@
 
 require_relative 'inputs'
 require_relative 'calculating'
+# Implemented the basic logic of the game
 class Game
   include Inputs
   include Calculating
