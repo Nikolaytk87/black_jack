@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require_relative 'inputs'
+require_relative 'calculating'
 class Game
-  MAX_POINTS = 21
   include Inputs
+  include Calculating
   attr_reader :player, :dealer
   attr_accessor :deck, :bank
 
@@ -55,23 +56,31 @@ class Game
   end
 
   def player_add_cards
-    card = player.cards.concat(give_cards).last
-    puts "Add card #{card.name} #{card.suit}. All Points: #{player.score}"
-    maximum_cards? ? open_cards : dealer_move
+    if player.max_cards?
+      puts 'Too much cards'
+    else
+      card = player.cards.concat(give_cards).last
+      player.show_added_card(card)
+    end
+    everyone_max_cards? ? open_cards : dealer_move
   end
 
   def dealer_move
     if dealer.score < dealer.limit
-      dealer.cards.concat(give_cards)
-      puts "#{dealer.name} took another card"
+      dealer_add_card
     else
       puts "#{dealer.name} skip move"
     end
-    maximum_cards? ? open_cards : player_move(input_player_choice)
+    everyone_max_cards? ? open_cards : player_move(input_player_choice)
   end
 
-  def maximum_cards?
-    player.cards.size >= 3 && dealer.cards.size >= 3
+  def dealer_add_card
+    dealer.cards.concat(give_cards)
+    puts "#{dealer.name} took another card"
+  end
+
+  def everyone_max_cards?
+    player.max_cards? && dealer.max_cards?
   end
 
   def open_cards
@@ -79,34 +88,6 @@ class Game
     show_info(player)
     show_info(dealer)
     calculating
-  end
-
-  def calculating
-    diff_player = MAX_POINTS - player.score
-    diff_dealer = MAX_POINTS - dealer.score
-    if diff_player.negative? || (diff_player > diff_dealer && !diff_dealer.negative?)
-      action_player_lost
-    elsif diff_player < diff_dealer || diff_dealer.negative?
-      action_player_win
-    elsif player.score == dealer.score
-      action_tie
-    end
-    self.bank = 0
-  end
-
-  def action_player_lost
-    dealer.bank += bank
-    puts "Alas,#{player.name} you lost"
-  end
-
-  def action_player_win
-    player.bank += bank
-    puts "Congratulations, #{player.name} you won"
-  end
-
-  def action_tie
-    puts 'Tie. Number of points equal'
-    split_users_bank
   end
 
   def split_users_bank
