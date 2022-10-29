@@ -20,7 +20,7 @@ class Game
     cards = [user.card_names, user.card_suits].transpose
     print "#{user.name} cards: "
     cards.each { |card| print "'#{card.join(' ')}'", ' ' }
-    puts "\nALL Points: #{user.score}"
+    user.show_score
   end
 
   def show_balance
@@ -62,6 +62,7 @@ class Game
     else
       card = player.cards.concat(give_cards).last
       player.show_added_card(card)
+      player.show_score
     end
     everyone_max_cards? ? open_cards : dealer_move
   end

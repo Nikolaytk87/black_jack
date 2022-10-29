@@ -40,6 +40,10 @@ class User
     cards.map(&:suit)
   end
 
+  def show_score
+    puts "All Points: #{score}"
+  end
+
   def show_added_card(card)
     puts "Add card #{card.name} #{card.suit}"
   end
