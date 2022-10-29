@@ -41,7 +41,7 @@ class User
   end
 
   def show_score
-    puts "All Points: #{score}"
+    puts "#{name}: All Points: #{score}"
   end
 
   def show_added_card(card)
