@@ -2,8 +2,7 @@
 
 require_relative 'user'
 class Dealer < User
-  attr_reader :limit
-
+  LIMIT = 17
   def initialize(name: 'BJDealer', bank: 100)
     super(name)
     @bank = bank
@@ -11,5 +10,9 @@ class Dealer < User
     @rate = 10
     @limit = 17
     super(name)
+  end
+
+  def score_less_limit?
+    score < LIMIT
   end
 end

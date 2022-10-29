@@ -66,7 +66,7 @@ class Game
   end
 
   def dealer_move
-    if dealer.score < dealer.limit
+    if dealer.score_less_limit?
       dealer_add_card
     else
       puts "#{dealer.name} skip move"
