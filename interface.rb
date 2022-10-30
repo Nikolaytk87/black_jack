@@ -40,8 +40,7 @@ class Interface
   def check_balance
     return unless player.bank.zero? || dealer.bank.zero?
 
-    puts 'The game is over due to a zero balance of one of the players'
-    exit
+    raise 'The game is over due to a zero balance of one of the players'
   end
 
   def round
