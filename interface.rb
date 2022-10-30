@@ -10,6 +10,11 @@ class Interface
   include Deck
   include Inputs
   attr_reader :player, :dealer, :game
+  attr_accessor :round_number
+
+  def initialize
+    @round_number = 1
+  end
 
   def init_users(player_name, dealer_name)
     @player = Player.new(name: player_name)
@@ -23,8 +28,9 @@ class Interface
 
   def menu
     check_balance
+    show_round_number
     deck = generate_deck
-    @game = Game.new(player, dealer, deck)
+    @game = Game.new(player, dealer, deck, str_round_number)
     round
     try_again
   end
@@ -43,6 +49,14 @@ class Interface
     raise 'The game is over due to a zero balance of one of the players'
   end
 
+  def str_round_number
+    "Round № #{round_number}"
+  end
+
+  def show_round_number
+    puts str_round_number
+  end
+
   def round
     game.reset_cards
     game.handout
@@ -50,5 +64,6 @@ class Interface
     game.bet
     game.player_move(input_player_choice)
     game.show_balance
+    self.round_number += 1
   end
 end

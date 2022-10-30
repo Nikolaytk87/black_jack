@@ -10,7 +10,6 @@ module Calculating
     elsif tie
       action_tie
     end
-    self.bank = 0
   end
 
   protected
@@ -29,16 +28,16 @@ module Calculating
 
   def action_player_lost
     dealer.bank += bank
-    puts "Alas,#{player.name} you lost"
+    puts "#{str_round_number}: Alas,#{player.name} you lost"
   end
 
   def action_player_win
     player.bank += bank
-    puts "Congratulations, #{player.name} you won"
+    puts "#{str_round_number}:  Congratulations, #{player.name} you won"
   end
 
   def action_tie
-    puts 'Tie. Number of points equal'
+    puts "#{str_round_number}: Tie. Number of points equal"
     split_users_bank
   end
 end

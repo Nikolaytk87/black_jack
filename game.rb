@@ -6,13 +6,14 @@ require_relative 'calculating'
 class Game
   include Inputs
   include Calculating
-  attr_reader :player, :dealer
+  attr_reader :player, :dealer, :str_round_number
   attr_accessor :deck, :bank
 
-  def initialize(player, dealer, deck)
+  def initialize(player, dealer, deck, str_round_number)
     @deck = deck
     @player = player
     @dealer = dealer
+    @str_round_number = str_round_number
     @bank = 0
   end
 
