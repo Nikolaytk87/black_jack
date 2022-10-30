@@ -45,7 +45,7 @@ class User
   end
 
   def show_added_card(card)
-    puts "Add card #{card.name} #{card.suit}"
+    puts "Add card '#{card.name}#{card.suit}'"
   end
 
   def reset_cards

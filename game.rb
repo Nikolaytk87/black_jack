@@ -20,7 +20,7 @@ class Game
   def show_info(user)
     cards = [user.card_names, user.card_suits].transpose
     print "#{user.name} cards: "
-    cards.each { |card| print "'#{card.join(' ')}'", ' ' }
+    cards.each { |card| print "'#{card.join}'", ' ' }
     user.show_score
   end
 
